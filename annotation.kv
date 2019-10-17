@@ -1,17 +1,84 @@
 <MainWindow>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'vertical'
+
+#        canvas:
+#            Color:
+#                rgb: (1,0,0)
+#            Rectangle:
+#                size: self.size
+#                pos: self.pos
+
+
+        TopBar:
+            id: top_bar
+            size_hint: 1, None
+            height: 100
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            SideBar:
+                size_hint: None, 1
+                width: root.width / 3
+
+            EditorFrame:
+                size_hint: 1, 1
+
+
+<SideBar>:
+    select_image_button: select_image_btn
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.5, 0.5
+
+        canvas:
+            Color:
+                rgb:(0, 1, 0)
+            Rectangle:
+                size: root.width, root.height
+                pos: self.pos
+
+
+        Button:
+            text: 'Select image'
+            id: select_image_btn
+            on_press: root.select_image()
+            size_hint: 0,0
+            size: 200, 50
+
+        Button:
+            text: 'Output file...'
+            size_hint: 0,0
+            size: 200, 50
+
+        Label:
+            text: "Output file :"
+            size_hint: 0,0
+            size: 200, 50
+
+<EditorFrame>:
     canvas:
         Rectangle:
-            pos: self.center_x - 5, 0
-            size: 10, self.height
+            size: root.width, root.height
+            pos: self.pos
 
-    Label:
-        font_size: 70
-        center_x: root.width / 4
-        top: root.top - 50
-        text: "0"
 
-    Label:
-        font_size: 70
-        center_x: root.width * 3 / 4
-        top: root.top - 50
-        text: "0"
+<TopBar>:
+    BoxLayout:
+        orientation: 'horizontal'
+
+        canvas:
+            Color:
+                rgb:(0, 0, 1)
+            Rectangle:
+                size: self.width, self.height
+                pos: self.pos
+
+
+        Button:
+            text: 'File...'
+            size_hint: 0,0
+            size: 200, 50
