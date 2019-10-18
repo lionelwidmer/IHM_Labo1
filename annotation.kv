@@ -32,16 +32,14 @@
     select_image_button: select_image_btn
     BoxLayout:
         orientation: 'vertical'
-        size_hint: 0.5, 0.5
+        size_hint: 1, 1
 
         canvas:
             Color:
                 rgb:(0, 1, 0)
             Rectangle:
-                size: root.width, root.height
+                size: self.width, self.height
                 pos: self.pos
-
-
         Button:
             text: 'Select image'
             id: select_image_btn
@@ -64,6 +62,13 @@
         Rectangle:
             size: root.width, root.height
             pos: self.pos
+
+    AnchorLayout:
+        anchor_y: 'center'
+        anchor_x: 'center'
+
+        Image:
+            source: 'cat.jpg'
 
 
 <TopBar>:
