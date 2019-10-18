@@ -1,8 +1,9 @@
+from random import random
+
 from kivy.app import App
+from kivy.graphics import Color, Ellipse, Line, Rectangle
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.widget import Widget
 
 
 class MainWindow(BoxLayout):
@@ -21,7 +22,16 @@ class TopBar(BoxLayout):
 
 
 class EditorFrame(BoxLayout):
-    pass
+    def on_touch_down(self, touch):
+        color = (random(), 1, 1)
+        with self.canvas:
+            Color(*color, mode='hsv')
+            touch.ud['rectangle'] = Rectangle(pos=(touch.x, touch.y))
+
+    def on_touch_move(self, touch):
+        width = touch.x - touch.ud['rectangle'].pos[0]
+        height = touch.y - touch.ud['rectangle'].pos[1]
+        touch.ud['rectangle'].size = (width, height)
 
 
 class AnnotationApp(App):
